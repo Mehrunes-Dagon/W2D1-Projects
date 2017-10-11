@@ -1,4 +1,5 @@
 require "io/console"
+require_relative "board"
 
 KEYMAP = {
   " " => :space,
@@ -99,7 +100,7 @@ class Cursor
 
   def update_pos(diff)
     new_pos = [@cursor_pos[0] + diff[0], @cursor_pos[1] + diff[1]]
-    if in_bounds(new_pos)
+    if @board.in_bounds(new_pos)
       @cursor_pos = new_pos
     else
       raise MoveError.new("Invalid Move: Out of Bounds")
@@ -108,3 +109,5 @@ class Cursor
 end
 
 #TODO: Define MoveError
+class MoveError < NameError
+end

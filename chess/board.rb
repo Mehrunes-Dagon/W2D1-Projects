@@ -1,6 +1,7 @@
 require_relative "piece"
 
 class Board
+  attr_accessor :grid
 
   def make_starting_grid
     Array.new(8) {Array.new(8)}
@@ -18,7 +19,7 @@ class Board
       j = 0
       while j < 8
         pos = [i ,j]
-        self[pos] = NullPiece.new
+        self[pos] = NullPiece.instance
         j += 1
       end
       i += 1
